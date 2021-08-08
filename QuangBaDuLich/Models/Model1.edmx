@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QL_DatTourDuLichModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DatTour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdTour" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="250" />
+          <Property Name="SDT" Type="int" />
+        </EntityType>
+        <EntityType Name="DiaDiem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="250" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="250" />
+          <Property Name="ImagesUrl" Type="varchar" MaxLength="50" />
+          <Property Name="MoTa" Type="ntext" />
+        </EntityType>
+        <EntityType Name="HanhTrinh">
+          <Key>
+            <PropertyRef Name="IdDiaDiem" />
+            <PropertyRef Name="IdTour" />
+          </Key>
+          <Property Name="IdDiaDiem" Type="int" Nullable="false" />
+          <Property Name="IdTour" Type="int" Nullable="false" />
+          <Property Name="STT" Type="int" />
+        </EntityType>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="LichTrinh" Type="nvarchar" MaxLength="250" />
+          <Property Name="KhoiHanh" Type="date" />
+          <Property Name="GiaThanh" Type="int" />
+          <Property Name="ImagesUrl" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__DatTour__IdTour__3F466844">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+          <End Role="DatTour" Type="Self.DatTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DatTour">
+              <PropertyRef Name="IdTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HanhTrinh__IdDia__3B75D760">
+          <End Role="DiaDiem" Type="Self.DiaDiem" Multiplicity="1" />
+          <End Role="HanhTrinh" Type="Self.HanhTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiaDiem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HanhTrinh">
+              <PropertyRef Name="IdDiaDiem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HanhTrinh__IdTou__3C69FB99">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+          <End Role="HanhTrinh" Type="Self.HanhTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HanhTrinh">
+              <PropertyRef Name="IdTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QL_DatTourDuLichModelStoreContainer">
+          <EntitySet Name="DatTour" EntityType="Self.DatTour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiaDiem" EntityType="Self.DiaDiem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HanhTrinh" EntityType="Self.HanhTrinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DatTour__IdTour__3F466844" Association="Self.FK__DatTour__IdTour__3F466844">
+            <End Role="Tour" EntitySet="Tour" />
+            <End Role="DatTour" EntitySet="DatTour" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HanhTrinh__IdDia__3B75D760" Association="Self.FK__HanhTrinh__IdDia__3B75D760">
+            <End Role="DiaDiem" EntitySet="DiaDiem" />
+            <End Role="HanhTrinh" EntitySet="HanhTrinh" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HanhTrinh__IdTou__3C69FB99" Association="Self.FK__HanhTrinh__IdTou__3C69FB99">
+            <End Role="Tour" EntitySet="Tour" />
+            <End Role="HanhTrinh" EntitySet="HanhTrinh" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QL_DatTourDuLichModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DatTour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdTour" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HoTen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="Int32" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK__DatTour__IdTour__3F466844" FromRole="DatTour" ToRole="Tour" />
+        </EntityType>
+        <EntityType Name="DiaDiem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Ten" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ImagesUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HanhTrinhs" Relationship="Self.FK__HanhTrinh__IdDia__3B75D760" FromRole="DiaDiem" ToRole="HanhTrinh" />
+        </EntityType>
+        <EntityType Name="HanhTrinh">
+          <Key>
+            <PropertyRef Name="IdDiaDiem" />
+            <PropertyRef Name="IdTour" />
+          </Key>
+          <Property Name="IdDiaDiem" Type="Int32" Nullable="false" />
+          <Property Name="IdTour" Type="Int32" Nullable="false" />
+          <Property Name="STT" Type="Int32" />
+          <NavigationProperty Name="DiaDiem" Relationship="Self.FK__HanhTrinh__IdDia__3B75D760" FromRole="HanhTrinh" ToRole="DiaDiem" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK__HanhTrinh__IdTou__3C69FB99" FromRole="HanhTrinh" ToRole="Tour" />
+        </EntityType>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="LichTrinh" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="KhoiHanh" Type="DateTime" Precision="0" />
+          <Property Name="GiaThanh" Type="Int32" />
+          <Property Name="ImagesUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DatTours" Relationship="Self.FK__DatTour__IdTour__3F466844" FromRole="Tour" ToRole="DatTour" />
+          <NavigationProperty Name="HanhTrinhs" Relationship="Self.FK__HanhTrinh__IdTou__3C69FB99" FromRole="Tour" ToRole="HanhTrinh" />
+        </EntityType>
+        <Association Name="FK__DatTour__IdTour__3F466844">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="0..1" />
+          <End Role="DatTour" Type="Self.DatTour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DatTour">
+              <PropertyRef Name="IdTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HanhTrinh__IdDia__3B75D760">
+          <End Role="DiaDiem" Type="Self.DiaDiem" Multiplicity="1" />
+          <End Role="HanhTrinh" Type="Self.HanhTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiaDiem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HanhTrinh">
+              <PropertyRef Name="IdDiaDiem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HanhTrinh__IdTou__3C69FB99">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+          <End Role="HanhTrinh" Type="Self.HanhTrinh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HanhTrinh">
+              <PropertyRef Name="IdTour" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QL_DatTourDuLichEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DatTours" EntityType="Self.DatTour" />
+          <EntitySet Name="DiaDiems" EntityType="Self.DiaDiem" />
+          <EntitySet Name="HanhTrinhs" EntityType="Self.HanhTrinh" />
+          <EntitySet Name="Tours" EntityType="Self.Tour" />
+          <AssociationSet Name="FK__DatTour__IdTour__3F466844" Association="Self.FK__DatTour__IdTour__3F466844">
+            <End Role="Tour" EntitySet="Tours" />
+            <End Role="DatTour" EntitySet="DatTours" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HanhTrinh__IdDia__3B75D760" Association="Self.FK__HanhTrinh__IdDia__3B75D760">
+            <End Role="DiaDiem" EntitySet="DiaDiems" />
+            <End Role="HanhTrinh" EntitySet="HanhTrinhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HanhTrinh__IdTou__3C69FB99" Association="Self.FK__HanhTrinh__IdTou__3C69FB99">
+            <End Role="Tour" EntitySet="Tours" />
+            <End Role="HanhTrinh" EntitySet="HanhTrinhs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QL_DatTourDuLichModelStoreContainer" CdmEntityContainer="QL_DatTourDuLichEntities1">
+          <EntitySetMapping Name="DatTours">
+            <EntityTypeMapping TypeName="QL_DatTourDuLichModel.DatTour">
+              <MappingFragment StoreEntitySet="DatTour">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdTour" ColumnName="IdTour" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiaDiems">
+            <EntityTypeMapping TypeName="QL_DatTourDuLichModel.DiaDiem">
+              <MappingFragment StoreEntitySet="DiaDiem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="ImagesUrl" ColumnName="ImagesUrl" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HanhTrinhs">
+            <EntityTypeMapping TypeName="QL_DatTourDuLichModel.HanhTrinh">
+              <MappingFragment StoreEntitySet="HanhTrinh">
+                <ScalarProperty Name="IdDiaDiem" ColumnName="IdDiaDiem" />
+                <ScalarProperty Name="IdTour" ColumnName="IdTour" />
+                <ScalarProperty Name="STT" ColumnName="STT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tours">
+            <EntityTypeMapping TypeName="QL_DatTourDuLichModel.Tour">
+              <MappingFragment StoreEntitySet="Tour">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LichTrinh" ColumnName="LichTrinh" />
+                <ScalarProperty Name="KhoiHanh" ColumnName="KhoiHanh" />
+                <ScalarProperty Name="GiaThanh" ColumnName="GiaThanh" />
+                <ScalarProperty Name="ImagesUrl" ColumnName="ImagesUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

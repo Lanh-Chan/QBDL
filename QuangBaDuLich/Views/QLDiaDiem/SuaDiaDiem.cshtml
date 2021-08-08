@@ -1,0 +1,33 @@
+﻿@model QuangBaDuLich.Models.DiaDiem
+
+@{
+    ViewBag.Title = "SuaDiaDiem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sửa địa điểm</h2>
+
+@using (Html.BeginForm("SuaDiaDiem", "QLDiaDiem"))
+{
+    @Html.HiddenFor(x => x.Id)
+    <table style="text-align: left; margin: 0 auto;">
+        <tr>
+            <td>Tên địa điểm:</td>
+            <td>@Html.EditorFor(model => model.Ten)</td>
+        </tr>
+        <tr>
+            <td>Địa chỉ:</td>
+            <td>@Html.EditorFor(model => model.DiaChi)</td>
+        </tr>
+        <tr>
+            <td>Đường dẫn hình ảnh:</td>
+            <td>@Html.EditorFor(model => model.ImagesUrl)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="display: flex; justify-content: flex-end;">
+                <input type="submit" value="Sửa" style="margin-top: 10px;" />
+            </td>
+        </tr>
+    </table>
+}

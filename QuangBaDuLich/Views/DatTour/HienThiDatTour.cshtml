@@ -1,0 +1,30 @@
+﻿@model List<QuangBaDuLich.Models.DatTour>
+
+@{
+    ViewBag.Title = "Hiển thị đặt tour";
+}
+
+
+<table class="table" style="margin-top: 30px;">
+    <tr>
+        <td>ID</td>
+        <td>ID Tour</td>
+        <td>Email</td>
+        <td>Họ tên</td>
+        <td>SDT</td>
+        <td></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.IdTour</td>
+            <td>@item.Email</td>
+            <td>@item.HoTen</td>
+            <td>@item.SDT</td>
+            <td>
+                <a href="/DatTour/XoaDatTour?id=@item.Id" style="margin: 0 5px;">Xoá</a>
+            </td>
+        </tr>
+    }
+</table>

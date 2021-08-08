@@ -1,0 +1,33 @@
+﻿@model QuangBaDuLich.Models.DiaDiem
+
+@{
+    ViewBag.Title = "ThemDiaDiem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thêm địa điểm</h2>
+
+@using (Html.BeginForm("ThemDiaDiem", "QLDiaDiem"))
+{
+    <table style="text-align: left; margin: 0 auto;">
+        <tr>
+            <td>Nhập tên địa điểm:</td>
+            <td>@Html.EditorFor(model => model.Ten)</td>
+        </tr>
+        <tr>
+            <td>Nhập địa chỉ:</td>
+            <td>@Html.EditorFor(model => model.DiaChi)</td>
+        </tr>
+        <tr>
+            <td>Nhập đường dẫn hình ảnh:</td>
+            <td>@Html.EditorFor(model => model.ImagesUrl)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="display: flex; justify-content: flex-end;">
+                <input type="submit" value="Thêm" style="margin-top: 10px;" />
+            </td>
+        </tr>
+    </table>
+}
+

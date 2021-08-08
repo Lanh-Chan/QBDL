@@ -1,0 +1,30 @@
+﻿@model QuangBaDuLich.Models.DatTour
+
+@{
+    ViewBag.Title = "DatTour";
+}
+
+<div class="content" style="margin-top: 30px;">
+    <div class="section group">
+        Bạn đang muốn đặt tour có ID: @ViewBag.Tour.Id
+
+        <div>
+            Họ và tên người đặt: <br />
+            <input type="text" />
+        </div>
+        <div>
+            Email: <br />
+            <input type="text" />
+        </div>
+        <div>
+            Số điện thoại: <br />
+            <input type="text" />
+        </div>
+        <div>
+            Ghi chú: <br />
+            <input type="text" />
+        </div>
+        <input type="button" value="Đặt tour" />
+    </div>
+</div>
+<a href="/DatTour/HienThiDatTour/">Hiển Thị Đặt Tour</a>

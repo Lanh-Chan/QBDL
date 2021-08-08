@@ -1,0 +1,32 @@
+﻿@model List<QuangBaDuLich.Models.Tour>
+
+@{
+    ViewBag.Title = "Quản Lý Tours";
+}
+
+<div class="p-5">
+    <h3>Chi Tiết Tour</h3>
+    <div class="row px-5">
+        @foreach (var item in @Model)
+        {
+            <div class="col-lg-4 col-md-6">
+                <div class="item-wrapper">
+                    <img src=@item.ImagesUrl alt="Image" width="250" height="149" />
+                    <label class="item-name">
+                        Tour:
+                        @foreach (var dd in @item.HanhTrinhs)
+                        {
+                            <font>@dd.DiaDiem.Ten</font>
+                        }
+                    </label>
+                    <label class="item-name">Lịch Trình: @item.LichTrinh</label>
+                    <label class="item-name">Giá Thành: @item.GiaThanh vnd</label>
+                    <label class="item-address">Khởi Hành: @item.KhoiHanh</label>
+                    <button class="btn btn-success btn-full" onclick="location.href = '/DatTour/DatTour/@item.Id'">Đặt Tour</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<a href="/QLTour/ListTour/">Quản Lý Tour</a>
+

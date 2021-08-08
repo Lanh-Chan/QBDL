@@ -1,0 +1,46 @@
+﻿@model List<QuangBaDuLich.Models.DiaDiem>
+
+@{
+    ViewBag.Title = "Danh sách địa điểm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách địa điểm</h2>
+
+<div>
+    <a href="/QLDiaDiem/ThemDiaDiem">Thêm địa điểm</a>
+</div>
+
+<table class="table tableDiaDiem">
+    <tr>
+        <th>ID</th>
+        <th>Tên địa điểm</th>
+        <th>Địa chỉ</th>
+        <th>Hình ảnh</th>
+        <td></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Ten</td>
+            @if (item.DiaChi != null && item.DiaChi.Length > 30)
+            {
+                <td>@item.DiaChi.Substring(0, Math.Min(item.DiaChi.Length, 50)) ...</td>
+            }
+            else
+            {
+                <td>@item.DiaChi</td>
+            }
+            <td>
+                <img src=@item.ImagesUrl height="50" />
+            </td>
+            <td>
+                <a href="/Home/Detail/@item.Id">Chi tiết</a>
+                <a href="/QLDiaDiem/SuaDiaDiem?id=@item.Id">Sửa</a>
+                <a href="/QLDiaDiem/XoaDiaDiem?id=@item.Id">Xoá</a>
+            </td>
+        </tr>
+    }
+</table>
+

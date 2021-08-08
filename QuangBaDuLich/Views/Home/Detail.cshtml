@@ -1,0 +1,15 @@
+﻿@using QuangBaDuLich.Models
+@model DiaDiem
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+
+<div class="item-wrapper">
+    <img src=@Model.ImagesUrl alt="Image" width="250" height="149" />
+    <label class="item-name">@Model.Ten</label>
+    <label class="item-address">Địa chỉ: @Model.DiaChi</label>
+    <p>@Model.MoTa</p>
+    @*<button class="btn btn-success btn-full" onclick="location.href = '/Home/Detail/@item.Id'">Chi Tiết</button>*@
+</div>

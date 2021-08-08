@@ -1,0 +1,42 @@
+﻿@model List<QuangBaDuLich.Models.Tour>
+
+@{
+    ViewBag.Title = "Danh sách tour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách Tour</h2>
+
+<div>
+    <a href="/QLTour/CreateTour">Thêm Tour</a>
+</div>
+
+<table class="table tableTour">
+    <tr>
+        <th>ID</th>
+        <th>Lịch Trình</th>
+        <th>Khởi Hành</th>
+        <th>Giá Thành</th>
+        <th>Hình Ảnh</th>
+        <td></td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.LichTrinh</td>
+            <td>@item.KhoiHanh</td>
+            <td>@item.GiaThanh</td>
+            <td>
+                <img src=@item.ImagesUrl height="50" />
+            </td>
+            <td>
+                @*<a href="/Home/Detail/@item.Id">Chi tiết</a>*@
+                <a href="/QLTour/EditTour?id=@item.Id">Sửa</a>
+                <a href="/QLTour/DeleteTour?id=@item.Id">Xoá</a>
+            </td>
+        </tr>
+    }
+</table>
+<a href="/QLTour/Tour">Quay Lại Tour</a>
+

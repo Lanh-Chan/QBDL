@@ -1,0 +1,36 @@
+﻿@model QuangBaDuLich.Models.Tour
+@{
+    ViewBag.Title = "CreateTour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thêm Tour</h2>
+
+@using (Html.BeginForm("CreateTour", "QLTour"))
+{
+    <table style="text-align: left; margin: 0 auto;">
+        <tr>
+            <td>Nhập Lịch Trình:</td>
+            <td>@Html.EditorFor(model => model.LichTrinh)</td>
+        </tr>
+        <tr>
+            <td>Nhập Ngày Khởi Hành:</td>
+            <td>@Html.EditorFor(model => model.KhoiHanh)</td>
+        </tr>
+        <tr>
+            <td>Nhập Ngày Giá Thành:</td>
+            <td>@Html.EditorFor(model => model.GiaThanh)</td>
+        </tr>
+        <tr>
+            <td>Nhập đường dẫn hình ảnh:</td>
+            <td>@Html.EditorFor(model => model.ImagesUrl)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="display: flex; justify-content: flex-end;">
+                <input type="submit" value="Thêm" style="margin-top: 10px;" />
+            </td>
+        </tr>
+    </table>
+}
+<a href="/QLTour/ListTour/">Quay Lại Danh Sách Tour</a>
